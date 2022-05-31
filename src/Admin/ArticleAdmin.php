@@ -26,8 +26,8 @@ final class ArticleAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('id')
-            ->add('name', null, ['editable' => true], ['editable' => true])
+            ->addIdentifier('id')
+            ->add('name', null, ['editable' => true])
             ->add('datePublication')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
