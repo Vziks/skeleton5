@@ -70,11 +70,11 @@ codestyle_check:
         paths:
             - vendor/
 
-phpunit_74_psg12:
+phpunit_80_psg12:
     stage: test_php80
     image: vziks/php-common:8.0
     services:
-        - postgres:12.2-alpine
+        - postgres:13.10-alpine
     variables:
         POSTGRES_DB: app_testing
         POSTGRES_USER: runner
