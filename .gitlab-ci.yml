@@ -70,7 +70,7 @@ codestyle_check:
         paths:
             - vendor/
 
-phpunit_74_psg12:
+phpunit_80_psg12:
     stage: test_php80
     image: vziks/php-common:8.0
     services:
