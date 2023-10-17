@@ -12,7 +12,9 @@ class Article
 {
     /**
      * @ORM\Id
+     *
      * @ORM\GeneratedValue
+     *
      * @ORM\Column(type="integer")
      */
     private ?int $id;
@@ -43,6 +45,7 @@ class Article
      *     cascade={"remove", "persist"},
      *     fetch="EAGER"
      * )
+     *
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected SonataMediaMedia $image;

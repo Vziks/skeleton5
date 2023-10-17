@@ -27,9 +27,6 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
 
     private array $referencesIndex = [];
 
-    /**
-     * @return mixed
-     */
     abstract protected function loadData(ObjectManager $manager);
 
     public function load(ObjectManager $manager)
