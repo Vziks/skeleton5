@@ -1,6 +1,6 @@
 stages:
     - validation
-    - test_php80
+    - test_php81
 
 variables:
     MYSQL_DATABASE: "skeleton4"
@@ -22,7 +22,7 @@ before_script:
 
 validation_check:
     stage: validation
-    image: vziks/php-common:8.0
+    image: vziks/php-common:8.1
     services:
         - postgres:12.2-alpine
     allow_failure: false
@@ -38,7 +38,7 @@ validation_check:
 
 security_check:
     stage: validation
-    image: vziks/php-common:8.0
+    image: vziks/php-common:8.1
     allow_failure: true
     dependencies: [ ]
     script:
@@ -49,7 +49,7 @@ security_check:
 
 codestyle_check:
     stage: validation
-    image: vziks/php-common:8.0
+    image: vziks/php-common:8.1
     allow_failure: true
     dependencies: [ ]
     script:
@@ -70,9 +70,9 @@ codestyle_check:
         paths:
             - vendor/
 
-phpunit_80_psg12:
+phpunit_81_psg12:
     stage: test_php80
-    image: vziks/php-common:8.0
+    image: vziks/php-common:8.1
     services:
         - postgres:13.10-alpine
     variables:
