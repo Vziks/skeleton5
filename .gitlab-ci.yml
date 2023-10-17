@@ -71,7 +71,7 @@ codestyle_check:
             - vendor/
 
 phpunit_81_psg12:
-    stage: test_php80
+    stage: test_php81
     image: vziks/php-common:8.1
     services:
         - postgres:13.10-alpine
