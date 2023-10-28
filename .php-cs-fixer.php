@@ -107,8 +107,6 @@ $rules = [
     'short_scalar_cast' => true,
     'simplified_null_return' => false,
     'single_blank_line_at_eof' => true,
-    'single_blank_line_before_namespace' => true,
-    'single_class_element_per_statement' => true,
     'single_import_per_statement' => true,
     'single_line_after_imports' => true,
     'single_line_comment_style' => [
@@ -134,8 +132,6 @@ $rules = [
 $finder = Finder::create()
     ->in([
         __DIR__ . '/src',
-        __DIR__ . '/config',
-        __DIR__ . '/templates',
         __DIR__ . '/tests',
     ])
     ->name('*.php')
@@ -146,6 +142,14 @@ $finder = Finder::create()
 $config = new Config();
 
 return $config->setFinder($finder)
-    ->setRules($rules)
+    ->setRules([
+        '@PhpCsFixer' => true,
+        '@DoctrineAnnotation' => true,
+        '@Symfony:risky' => true,
+        'concat_space' => [
+            'spacing' => 'one',
+        ],
+        'yoda_style' => false
+    ])
     ->setRiskyAllowed(true)
-    ->setUsingCache(true);
+    ->setUsingCache(false);

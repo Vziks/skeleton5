@@ -34,7 +34,8 @@ class UserAdminFixture extends Fixture
             ->setRoles([
                 'ROLE_SONATA_ADMIN',
                 'ROLE_ADMIN',
-            ]);
+            ])
+        ;
     }
 
     /**

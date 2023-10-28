@@ -29,16 +29,9 @@ class UserProvider implements UserProviderInterface
         return $user;
     }
 
-    private function findOneUserBy(array $options): ?UserAdmin
-    {
-        return $this->entityManager
-            ->getRepository(UserAdmin::class)
-            ->findOneBy($options);
-    }
-
     public function refreshUser(UserInterface $user): UserAdmin
     {
-        assert($user instanceof UserAdmin);
+        \assert($user instanceof UserAdmin);
 
         if (null === $reloadedUser = $this->findOneUserBy(['id' => $user->getId()])) {
             throw new UserNotFoundException(sprintf('User with ID "%s" could not be reloaded.', $user->getId()));
@@ -64,6 +57,15 @@ class UserProvider implements UserProviderInterface
                 OR u.email = :query'
         )
             ->setParameter('query', $identifier)
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
+    }
+
+    private function findOneUserBy(array $options): ?UserAdmin
+    {
+        return $this->entityManager
+            ->getRepository(UserAdmin::class)
+            ->findOneBy($options)
+        ;
     }
 }

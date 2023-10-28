@@ -8,17 +8,24 @@ use Sonata\MediaBundle\Entity\MediaManager;
 
 class ArticleFixture extends BaseFixture
 {
+    protected MediaManager $mediaManager;
     private array $arrayImages = [
         '1.jpeg',
         '2.jpeg',
         '3.jpeg',
     ];
 
-    protected MediaManager $mediaManager;
-
     public function __construct(MediaManager $mediaManager)
     {
         $this->mediaManager = $mediaManager;
+    }
+
+    /**
+     * Get the order of this fixture.
+     */
+    public function getOrder(): int
+    {
+        return 10;
     }
 
     protected function loadData(ObjectManager $manager)
@@ -31,19 +38,12 @@ class ArticleFixture extends BaseFixture
                 ->setDescription($this->faker->realText(70))
                 ->setDatePublication($this->faker->dateTimeBetween('-21 days', '-1 days'))
                 ->setText($this->faker->realText(2500))
-                ->setImage($this->fakeUploadImage($this->getShortClassName($news), $this->arrayImages, 'default'));
+                ->setImage($this->fakeUploadImage($this->getShortClassName($news), $this->arrayImages, 'default'))
+            ;
 
             return $news;
         });
 
         $manager->flush();
-    }
-
-    /**
-     * Get the order of this fixture.
-     */
-    public function getOrder(): int
-    {
-        return 10;
     }
 }

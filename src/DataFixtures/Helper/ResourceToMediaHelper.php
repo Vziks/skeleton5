@@ -17,7 +17,7 @@ class ResourceToMediaHelper
         $bin = file_get_contents($url);
 
         $ext = explode('.', $url);
-        $ext = $ext[count($ext) - 1];
+        $ext = $ext[\count($ext) - 1];
 
         $tmp = sys_get_temp_dir() . '/' . md5($url) . '.' . $ext;
         file_put_contents($tmp, $bin);

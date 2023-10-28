@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Admin;
 
@@ -20,7 +20,8 @@ final class ArticleAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('text')
-            ->add('datePublication');
+            ->add('datePublication')
+        ;
     }
 
     protected function configureListFields(ListMapper $list): void
@@ -35,7 +36,8 @@ final class ArticleAdmin extends AbstractAdmin
                     'edit' => [],
                     'delete' => [],
                 ],
-            ]);
+            ])
+        ;
     }
 
     protected function configureFormFields(FormMapper $form): void
@@ -54,7 +56,8 @@ final class ArticleAdmin extends AbstractAdmin
                 ]
             )
             ->add('text')
-            ->add('datePublication');
+            ->add('datePublication')
+        ;
     }
 
     protected function configureShowFields(ShowMapper $show): void

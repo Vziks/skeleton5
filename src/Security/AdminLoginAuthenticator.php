@@ -61,7 +61,7 @@ class AdminLoginAuthenticator extends AbstractFormLoginAuthenticator implements 
 
     public function checkCredentials($credentials, UserInterface $user): bool
     {
-        /* @var PasswordAuthenticatedUserInterface $user */
+        // @var PasswordAuthenticatedUserInterface $user
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
@@ -72,13 +72,13 @@ class AdminLoginAuthenticator extends AbstractFormLoginAuthenticator implements 
         return new RedirectResponse($this->router->generate('admin_login'));
     }
 
-    protected function getLoginUrl(): string
-    {
-        return $this->router->generate('admin_login');
-    }
-
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
         return new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
+    }
+
+    protected function getLoginUrl(): string
+    {
+        return $this->router->generate('admin_login');
     }
 }

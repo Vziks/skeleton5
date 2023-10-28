@@ -3,52 +3,28 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
- */
+#[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    /**
-     * @ORM\Id
-     *
-     * @ORM\GeneratedValue
-     *
-     * @ORM\Column(type="integer")
-     */
-    private ?int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private ?string $name;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private ?string $description;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private ?string $text;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $datePublication = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private ?\DateTimeInterface $datePublication;
-
-    /**
-     * @ORM\ManyToOne(
-     *     targetEntity="App\Entity\SonataMediaMedia",
-     *     cascade={"remove", "persist"},
-     *     fetch="EAGER"
-     * )
-     *
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    protected SonataMediaMedia $image;
+    #[ORM\ManyToOne]
+    private ?SonataMediaMedia $image = null;
 
     public function getId(): ?int
     {
@@ -79,18 +55,6 @@ class Article
         return $this;
     }
 
-    public function getText(): ?string
-    {
-        return $this->text;
-    }
-
-    public function setText(?string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
     public function getDatePublication(): ?\DateTimeInterface
     {
         return $this->datePublication;
@@ -103,13 +67,15 @@ class Article
         return $this;
     }
 
-    public function getImage(): SonataMediaMedia
+    public function getImage(): ?SonataMediaMedia
     {
         return $this->image;
     }
 
-    public function setImage(SonataMediaMedia $image): void
+    public function setImage(?SonataMediaMedia $image): self
     {
         $this->image = $image;
+
+        return $this;
     }
 }

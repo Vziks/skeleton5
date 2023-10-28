@@ -21,13 +21,11 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
 {
     use ContainerAwareTrait;
 
-    private ObjectManager $manager;
-
     protected Generator $faker;
 
-    private array $referencesIndex = [];
+    private ObjectManager $manager;
 
-    abstract protected function loadData(ObjectManager $manager);
+    private array $referencesIndex = [];
 
     public function load(ObjectManager $manager)
     {
@@ -36,6 +34,8 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
 
         $this->loadData($manager);
     }
+
+    abstract protected function loadData(ObjectManager $manager);
 
     /**
      * Create many objects at once:.
@@ -53,7 +53,7 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
      */
     protected function createMany(int $count, string $groupName, callable $factory): void
     {
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; ++$i) {
             $entity = $factory($i);
             if (null === $entity) {
                 throw new \LogicException(
@@ -73,7 +73,7 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
             $this->referencesIndex[$groupName] = [];
 
             foreach ($this->referenceRepository->getReferences() as $key => $ref) {
-                if (0 === strpos($key, $groupName . '_')) {
+                if (str_starts_with($key, $groupName . '_')) {
                     $this->referencesIndex[$groupName][] = $key;
                 }
             }
@@ -93,7 +93,7 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
     protected function getRandomReferences(string $className, int $count): array
     {
         $references = [];
-        while (count($references) < $count) {
+        while (\count($references) < $count) {
             $references[] = $this->getRandomReference($className);
         }
 
