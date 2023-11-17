@@ -24,9 +24,9 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
 
     protected Generator $faker;
 
-    private ObjectManager $manager;
-
     protected MediaManager $mediaManager;
+
+    private ObjectManager $manager;
 
     private array $referencesIndex = [];
 
