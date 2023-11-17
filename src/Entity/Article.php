@@ -26,6 +26,9 @@ class Article
     #[ORM\ManyToOne]
     private ?SonataMediaMedia $image = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $text = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Article
     public function setImage(?SonataMediaMedia $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(?string $text): static
+    {
+        $this->text = $text;
 
         return $this;
     }
