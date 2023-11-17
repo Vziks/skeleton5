@@ -67,6 +67,7 @@ final class ArticleAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('text')
-            ->add('datePublication');
+            ->add('datePublication')
+        ;
     }
 }
