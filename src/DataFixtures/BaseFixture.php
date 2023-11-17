@@ -9,6 +9,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Sonata\MediaBundle\Entity\MediaManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -24,6 +25,8 @@ abstract class BaseFixture extends Fixture implements ContainerAwareInterface, O
     protected Generator $faker;
 
     private ObjectManager $manager;
+
+    protected MediaManager $mediaManager;
 
     private array $referencesIndex = [];
 

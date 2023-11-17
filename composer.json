@@ -37,6 +37,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.23",
         "friendsofphp/php-cs-fixer": "^3.8",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/debug-bundle": "5.4.*",

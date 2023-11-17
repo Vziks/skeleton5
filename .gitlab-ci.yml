@@ -20,6 +20,17 @@ before_script:
     - echo 'memory_limit = 2G' >> /usr/local/etc/php/conf.d/extra.ini
     - sudo chown -R www-data:www-data ./
 
+phpstan_check:
+    stage: validation
+    image: vziks/php-common:8.1
+    allow_failure: true
+    dependencies: [ ]
+    script:
+        - composer install --profile --prefer-dist --no-interaction --no-scripts --dev
+        - cp phpstan.dist.neon phpstan.neon
+        - php ./vendor/bin/phpstan analyse
+    cache: { }
+
 validation_check:
     stage: validation
     image: vziks/php-common:8.1

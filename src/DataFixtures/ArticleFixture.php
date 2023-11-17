@@ -8,7 +8,6 @@ use Sonata\MediaBundle\Entity\MediaManager;
 
 class ArticleFixture extends BaseFixture
 {
-    protected MediaManager $mediaManager;
     private array $arrayImages = [
         '1.jpeg',
         '2.jpeg',
